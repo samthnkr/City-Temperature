@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Temperature Viewer</title>
+    <style>
+        .center{
+            text-align: center;
+            padding-top: 3%;
+        }
+        .heading{
+            font-family: 'Courier New', monospace;
+        }
+.same{
+    padding-top: 1%;
+    font-family: "Sofia", sans-serif;
+}
+.button{
+    
+  
+  padding: 8px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+.button:hover {
+  background-color: #36e627;
+  color: white;
+}
+
+    </style>
+</head>
+<body style="background-color:#ADFF2F">
+    <div class="center heading">
+    <h1>Temperature</h1>
+    <div class="same"> City: 
+        <input id="1" type="text">   
+    </div>
+    <div class="same">
+        <button onclick="getit()" class="button">Fetch</button>
+    </div>
+    <div id="answer" class="same">Result</div>
+</div>
+
+<script>
+
+     function getit(){
+        let inp=document.getElementById("1").value;
+        console.log("aksjlhdfsa");
+        
+        let b;
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=' + inp + '&appid=976f21a31ce8b0194bc2760f74e953bb')
+        .then(response => response.json())
+        .then(data =>
+        {
+            b=data['main']['temp'];
+            document.getElementById('answer').innerHTML= b -273 + " Celcius";
+        }
+        )
+        .catch(err => alert("City does not exist"))
+        
+    }
+
+</script>
+
+
+
+</body>
+</html>
